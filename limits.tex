@@ -1,0 +1,100 @@
+\iffalse
+
+MIT License
+
+Copyright (c) 2023 Aron Hardeman
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+\fi\section{Limits}
+\tableofcontents[currentsection,currentsubsection]
+
+\begin{frame}
+
+\frametitle{Basic limits}
+
+\begin{itemize}
+\item  $\lim\limits_{x\to1}\frac{x^2-1}{x-1}=$\pause$\lim\limits_{x\to1}\frac{(x+1)(x-1)}{(x-1)}=\lim\limits_{x\to1}(x+1)=1+1=2$
+\item\pause $\lim\limits_{t\to-4^-}\frac{x^2+9x+20}{\left|x+4\right|}=$\pause$\lim\limits_{t\to-4^-}\frac{x^2+9x+20}{-(x+4)}=\lim\limits_{t\to-4^-}\frac{(x+5)(x+4)}{-(x+4)}=\lim\limits_{t\to-4^-}-(x+5)=-(-4+5)=-1$
+\item\pause $\lim\limits_{x\to-4}\frac{\sqrt{x^2+9}-5}{x+4}=$\pause$\lim\limits_{x\to-4}\frac{\sqrt{x^2+9}-5}{x+4}\cdot\frac{\sqrt{x^2+9}+5}{\sqrt{x^2+9}+5}=\lim\limits_{x\to-4}\frac{x^2+9-25}{(x+4)(\sqrt{x^2+9}+5)}=\lim\limits_{x\to-4}\frac{(x+4)(x-4)}{(x+4)(\sqrt{x^2+9}+5)}=\lim\limits_{x\to-4}\frac{x-4}{\sqrt{x^2+9}+5}=\frac{-4-4}{\sqrt{(-4)^2+9}+5}=-\frac{4}{5}$
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{L'Hôpital's rule}
+
+\begin{tcolorbox}[colback=yellow!50,colframe=violet!85!black,title=L'Hôpital's rule]
+    If we have a limit $\lim\limits_{x\to a}\frac{f(x)}{g(x)}$ \textbf{that is an indeterminate form of type $\pmb{\frac{0}{0}}$ or $\pmb{\frac{\infty}{\infty}}$}, then\footnote{\scriptsize if $f$ and $g$ are differentiable and $g'(x)\neq0$ in a neighborhood of $a$ (except possibly at $a$) and if $\lim\limits_{x\to a}\frac{f'(x)}{g'(x)}$ exists or is $\pm\infty$}, we have \[\lim\limits_{x\to a}\frac{f(x)}{g(x)}=\lim\limits_{x\to a}\frac{f'(x)}{g'(x)}\]
+
+    
+\end{tcolorbox}
+\begin{itemize}
+    \item $\lim\limits_{x\to0}\frac{2\sin x-\sin2x}{x-\sin x}=$\pause$\lim\limits_{x\to0}\frac{2\cos x-2\cos 2x}{1-\cos x}=$ \pause $\lim\limits_{x\to0}\frac{-2\sin x + 4\sin2x}{\sin x}=$ \pause $\lim\limits_{x\to0}\frac{-2\cos x + 8\cos2x}{\cos x}=$ \pause $\frac{-2+8}{1}=\boxed{6}$
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+
+\frametitle{Squeeze theorem}
+
+\begin{tcolorbox}[colback=yellow!50,colframe=violet!85!black,title=Squeeze theorem]
+    If $f(x)\leq g(x)\leq h(x)$ for $x$ near $a$ (except possibly at $a$), then:
+
+    \[\lim\limits_{x\to a}f(x)=\lim\limits_{x\to a}h(x)=L\quad\implies\quad \lim\limits_{x\to a}g(x)=L\]
+    
+\end{tcolorbox}
+\begin{itemize}
+    \item $\lim\limits_{x\to0}{x^{2}\sin\frac{1}{x}}=?$
+    \item\pause We have $-1\leq\sin\frac{1}{x}\leq1$ for all real non-zero x, and $x^2\geq0$, thus also: $-x^2\leq x^2\sin\frac{1}{x}\leq x^2$
+    \item\pause $\lim\limits_{x\to0}(-x^2)=\lim\limits_{x\to0}x^2=0$, therefore $\boxed{\lim\limits_{x\to0}x^2\sin\frac{1}{x}=0}$.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{Limits with $e$}
+
+\begin{tcolorbox}[colback=yellow!50,colframe=violet!85!black,title=Euler's number]
+    Euler's number is equal to $e=\lim\limits_{n\to\infty}\left(1+\frac{1}{n}\right)^n$.
+    
+\end{tcolorbox}
+\begin{itemize}
+    \item\pause Question: calculate $\lim\limits_{x\to\infty}\left(\frac{x+11}{x+5}\right)^{7x+3}$.
+    \item\pause Solution: next slide.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Example limit with $e$}
+    \begin{align*}
+        \action<+->{\hspace{-3mm}\lim\limits_{x\to\infty}&\left(\frac{x+11}{x+5}\right)^{7x+3}
+        =}\action<+->{\lim\limits_{x\to\infty}\left(1+\frac{6}{x+5}\right)^{7x+3}
+        =}\action<+->{\lim\limits_{x\to\infty}\left(1+\frac{1}{\frac{x}{6}+\frac{5}{6}}\right)^{7x+3}}\\
+        \action<+->{\hspace{-3mm}&=\lim\limits_{x\to\infty}\left(1+\frac{1}{\frac{x}{6}+\frac{5}{6}}\right)^{\left(\frac{x}{6}+\frac{5}{6}\right)\cdot6\cdot7-35+3}
+        =}\action<+->{\lim\limits_{x\to\infty}\left(1+\frac{1}{\frac{x}{6}+\frac{5}{6}}\right)^{\left(\frac{x}{6}+\frac{5}{6}\right)\cdot42-32}}\\
+        \action<+->{\hspace{-3mm}&=\lim\limits_{x\to\infty}\left(\left(1+\frac{1}{\frac{x}{6}+\frac{5}{6}}\right)^{\left(\frac{x}{6}+\frac{5}{6}\right)}\right)^{42} \left(1+\frac{1}{\frac{x}{6}+\frac{5}{6}}\right)^{-32}}\\
+        \action<+->{\hspace{-3mm}&=\left(\lim\limits_{x\to\infty}\left(1+\frac{1}{\frac{x}{6}+\frac{5}{6}}\right)^{\left(\frac{x}{6}+\frac{5}{6}\right)}\right)^{42} \cdot 1}\action<+->{=\boxed{\boxed{\mathlarger{\mathlarger{e^{42}}}}}}
+    \end{align*}
+\end{frame}
