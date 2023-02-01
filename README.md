@@ -10,4 +10,4 @@ If you have *any* suggestion to improve these slides, please contact me! (I won'
 
 Of course, you are also allowed to play around with the LaTeX source code yourself. You are also allowed to make your own copies of the source code and improve the slides. Basically you can do anything you want, provided you don't remove the license or copyright notice. (for more info, see License)
 
-Once, again, I would be extremely happy with *any* suggestion for improvement! ;)
+Once again, I would be extremely happy with *any* suggestion for improvement! Thank you for looking at these slides! ;)
