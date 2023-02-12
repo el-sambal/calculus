@@ -1,0 +1,147 @@
+\iffalse
+
+MIT License
+
+Copyright (c) 2023 Aron Hardeman
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+\fi
+\section{Complex numbers}
+\tableofcontents[currentsection,currentsubsection]
+\begin{frame}
+\frametitle{Basic arithmetic}
+
+Complex numbers $(a+bi$ with $a,b\in\mathbb{R})$ behave just like you'd expect when doing simple arithmetic. For example:
+
+\pause $(12-23i) + (3+6i) = 15 -17i$
+
+\pause $(12-23i) - (3+6i) = 9 -29i$
+
+\pause $(5+6i)(7+8i) = 35+82i+48i^2 = -13+82i$
+
+\pause For division, use this trick with the complex conjugate of the denominator:
+
+$\frac{2-3i}{4-5i}=$\pause$\frac{2-3i}{4-5i}\cdot\underbrace{\frac{4+5i}{4+5i}}_{=1} $\pause$= \frac{(2-3i)(4+5i)}{(4-5i)(4+5i)}$\pause$=\frac{23-2i}{41}$\pause$=\boxed{\frac{23}{41}-\frac{2}{41}i}$
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Complex plane}
+
+Complex numbers lie in the \textit{complex plane}.
+
+%\pause\includegraphics[scale=0.8]{plane.png}
+
+\begin{tikzpicture}
+\begin{axis}[xlabel=$\mathfrak{Re}$,ylabel=$\mathfrak{Im}$,xmin=-7,ymin=-7,xmax=7,ymax=7,axis lines = middle,width=7cm,height=7cm,yticklabels={,,},xticklabels={,,}]
+\addplot[data cs=polar,red,domain=0:360,samples=360,smooth] (x,5);
+%\node[label={30:{(3,4)}},circle,fill,inner sep=2pt] at (axis cs:3,4) {};
+\node[label={270:{a}},circle,fill,inner sep=1pt] at (axis cs:3,0) {};
+\node[label={180:{b}},circle,fill,inner sep=1pt] at (axis cs:0,4) {};
+\draw (axis cs:0,0) -- node[label={[xshift=0.1cm, yshift=-0.1cm]$r$}, left]{} (axis cs:3,4);
+\draw[dashed] (axis cs:0,4) -- (axis cs:3,4);
+\draw[dashed] (axis cs:3,0) -- (axis cs:3,4);
+\draw
+  (axis cs:5,0) coordinate (a)
+  -- (axis cs:0,0) coordinate (b)
+  -- (axis cs:3,4) coordinate (c) node[above right] {$z$}
+  pic["$\theta$",draw=red,->,angle eccentricity=1.5,angle radius=0.6cm] {angle=a--b--c};
+\end{axis}
+\end{tikzpicture}
+${\boxed{\boxed{z=a+bi=re^{i\theta}=r[\cos\theta+i\sin\theta]}}}$
+
+
+
+\pause Instead of writing $a+bi$ (rectangular form), we can equivalently write $re^{i\theta}$ or $r[\cos\theta+i\sin\theta]$. The latter is known as the \textit{polar form}.
+\end{frame}
+
+\begin{frame}
+\frametitle{Converting to exponential and polar form}
+\begin{itemize}
+\item The modulus of a complex number $z=x+yi$ is $\boxed{r=|z|=\sqrt{x^2+y^2}}$.
+
+\item\pause In order to find the (principal) argument $\Arg(z)$, use the formula:
+\[{\theta=\Arg(z)=\atantwo(y,x)=\begin{cases}
+\arctan(\frac{y}{x}) &x>0\\
+\arctan(\frac{y}{x})+\pi &x<0, y\geq0\\
+\arctan(\frac{y}{x})-\pi &x<0, y<0 \\
+\frac{\pi}{2}&x=0, y>0\\
+-\frac{\pi}{2} &x=0, y<0\\
+\text{(undefined)} &x=0, y=0
+\end{cases}}\]
+
+This formula gives the angle between $-\pi<\theta\leq\pi$.
+
+\pause\textbf{Angles are in radians!} Fun fact: the function $\atantwo(y,x)$ is implemented in many programming languages, including C, Java, ...
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Converting to exponential form (examples)}
+    \begin{itemize}
+        \item\pause  $1+i=\sqrt{2}\cdot e^{i\pi/4}$ \textcolor{gray}{(since $\sqrt{1^2+1^2}=\sqrt{2}$ and $\Arg(1+i)=\frac{\pi}{4}$)}
+        \item\pause  $1-i=\sqrt{2}\cdot e^{-i\pi/4}$ \textcolor{gray}{(now the angle is $\Arg(1-i)=-\frac{\pi}{4}$)}
+        \item\pause  $-10=10e^{i\pi}$ \textcolor{gray}{($-10$ lies on the negative real axis, so the angle is $\pi$)}
+    \end{itemize}
+
+    
+\end{frame}
+
+\begin{frame}
+\frametitle{Multiplying two complex numbers (polar form)}
+\begin{itemize}
+\item Suppose that we have two complex numbers $z_1=r_1 e^{i\theta_1}$ and $z_2=r_2 e^{i\theta_2}$. Let's see what happens when we multiply:
+\pause\item $z_1z_2=r_1e^{i\theta_1}r_2 e^{i\theta_2}=r_1r_2e^{i(\theta_1+\theta_2)}$.
+\pause\item Thus, when multiplying two complex numbers, the modulus gets multiplied and the arguments (angles) get added.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Getting the n$^\text{th}$ roots of a number}
+\begin{itemize}
+\item Question: find all $z\in\mathbb{C}$ for which $z^5=-10$.
+\pause\item Solution: we have that $arg(-10)=\textcolor{blue}{\pi+2k\pi}$ and $|-10|=\textcolor{red}{10}$. \pause So we can write $z^5=-10=\textcolor{red}{10}e^{i(\textcolor{blue}{\pi+2k\pi})}$. {\scriptsize(for $k\in\mathbb{Z}$)}
+\pause\item Raising left-hand and right-hand side to the power $\frac{1}{5}$, we obtain $z=10^{1/5}e^{i(\frac{\pi}{5}+\frac{2k\pi}{5})}$
+\pause\item We have five solutions, so for example, take $k$ to be $0,1,2,3,4$ to find the following solutions:
+\begin{align*}
+&z=10^{1/5}e^{i(\frac{\pi}{5})} \quad&\lor\quad   z=10^{1/5}e^{i(\frac{3\pi}{5})} &&\\
+\lor\quad & z=10^{1/5}e^{i\pi}=-10^{1/5}  &\lor\quad
+z=10^{1/5}e^{i(\frac{7\pi}{5})}   &\quad\lor\quad 
+z=10^{1/5}e^{i(\frac{9\pi}{5})} & 
+\end{align*}
+\pause\item (These are all solutions: if we were to go on for $k=5,6,\hdots$, then the solutions would repeat because sine and cosine (and thus, $e^{i\theta})$ have a period of $2\pi$.)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{De Moivre's formula}
+\begin{itemize}
+
+\item Question: write $(\sqrt{3}+i)^{1000}$ in the form $a+bi$
+\pause\item One approach would be to expand brackets a thousand times. However, there is a faster method.
+\pause\item We can write $(\sqrt{3}+i)^{1000}=(2e^{i\pi/6})^{1000}=2^{1000}e^{1000i\pi/6}=2^{1000}e^{4i\pi/6}=2^{1000}\left(-\frac{1}{2}+\frac{\sqrt{3}}{2}i\right)=\boxed{-2^{999} +2^{999}\sqrt{3}i} $
+\end{itemize}
+
+\begin{tcolorbox}[colback=yellow!50,colframe=violet!85!black,title=De Moivre's formula]
+    Suppose we have a complex number $z=e^{i\theta}$. Then, as in the example, $z^n=(e^{i\theta})^n=e^{in\theta}$. Rewriting in polar form gives us \textit{De Moivre's formula}: \[(\cos\theta+i\sin\theta)^n=\cos n\theta + i\sin n\theta\] In practice, using the exponential form (as in the example) may be easier.
+    
+\end{tcolorbox}
+\end{frame}
