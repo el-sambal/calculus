@@ -1,6 +1,6 @@
 # calculus
 
-These are the slides for the support lecture for Calculus for Computing Science and Calculus for Artificial Intelligence.
+These (CALCULUS.pdf) are the slides for the support lecture for Calculus for Computing Science and Calculus for Artificial Intelligence.
 
 It is hoped that the slides are of good use to you and your classmates.
 
