@@ -1,9 +1,5 @@
-# calculus
+# Calculus I (for CS), support lecture
 
-These (CALCULUS.pdf) are the slides for the support lecture for Calculus for Computing Science and Calculus for Artificial Intelligence.
+This repository contains the slides for the support lecture for **Calculus I (for CS)**, organized by Study Association Cover. This is a (very) dense recap lecture, which is not officially part of the course.
 
-It is hoped that the slides are of good use to you and your classmates.
-
-Please notice that I am not a Teaching Assistant. This is an unofficial support lecture organised by Study Association Cover, and these slides are not official, nor has the lecturer reviewed them or approved of them.
-
-If you have any suggestion to improve these slides, feel free to contact me.
+Previous versions of these slides have been used for the courses Calculus for Computing Science and Calculus for Artificial Intelligence (which at the time were almost identical), but the current version is only for Computing Science students; it has not been synced with the AI course.
