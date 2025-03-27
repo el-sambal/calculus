@@ -119,24 +119,27 @@ Solution: let's compute some derivatives:
 \end{frame}
 
 \begin{frame}{Error estimation using Taylor's theorem}
-    \textbf{Question}: estimate $\sin(1^\circ)$ with an error less than $10^{-18}$.
+    \textbf{Question}: estimate $\sin(1^\circ)$ with an error less than $10^{-13}$.
 
     \vspace{2mm}
     \pause
     \textbf{Solution}: 
     \begin{itemize}
-        \pause\item We want to approximate $\sin(1^\circ)=\sin\frac1{360}$ using the Taylor polynomials of $\sin x$ (centered around $x=0$). So, for which $n$ do we have $|E_n(\frac1{360})|<10^{-18}$?
+        \pause\item We want to approximate $\sin(1^\circ)=\sin\frac\pi{180}$ using the Taylor polynomials of $\sin x$ (centered around $x=0$). So, for which $n$ do we have $|E_n(\frac\pi{180})|<10^{-13}$?
 
-        \pause\item By the Error estimation theorem with $M=1$ (why?), we find that $|E_n(\frac1{360})|<10^{-18}$ whenever $\frac{(\frac1{360})^{n+1}}{(n+1)!}<10^{-18}$. This holds for $n\geq5$.
+        \pause\item By the Error estimation theorem with $M=1$ (why?), we find that $|E_n(\frac\pi{180})|<10^{-13}$ whenever $\frac{(\frac\pi{180})^{n+1}}{(n+1)!}<10^{-13}$. This holds for $n\geq5$.
 
         \pause\item Hence, it suffices to use the Taylor polynomial of degree $5$. We get
-            {\footnotesize\[\sin(1^\circ)\approx (1/360)-\frac{(1/360)^3}6+\frac{(1/360)^5}{120}={\color{green!70!teal}0.002777774205534071}367988\dots\]}
+        {\footnotesize\[\sin(1^\circ)\approx (\pi/180)-\frac{(\pi/180)^3}6+\frac{(\pi/180)^5}{120}={\color{green!70!teal}0.0174524064372}836107\dots\]}
 
-        \pause\item Verification: {\footnotesize$\sin(\frac1{360})={\color{green!70!teal}0.002777774205534071}367734\dots$}
+            \pause\item Verification: {\footnotesize$\sin(\frac\pi{180})={\color{green!70!teal}0.0174524064372}835128\dots$}
         
             \pause
             Verdict: success!
-
+%f(pi/180)
+%0.01745240643728361070285346909868449393658246357262
+%s(pi/180)
+%0.01745240643728351281941897851631619247225272030713
         \end{itemize}
     
 \end{frame}
