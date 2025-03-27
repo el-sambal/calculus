@@ -1,4 +1,6 @@
-\documentclass[handout]{beamer}
+\documentclass[
+%handout
+]{beamer}
 \iffalse
 
 MIT License
@@ -26,7 +28,7 @@ SOFTWARE.
 \fi
 \usepackage[utf8]{inputenc}
 
-\title{Calculus for CS+AI}
+\title{Calculus I (for CS)}
 \author[Mihnea Pasere \& Aron Hardeman]{\texorpdfstring{Aron Hardeman \& Mihnea Pasere\\\textcolor{gray}{Slides by Aron Hardeman}}{Aron Hardeman}}
 \date[March 27, 2025]{March 27, 2025\\This is an unofficial lecture organized by S.V. Cover.}
 
@@ -70,10 +72,28 @@ SOFTWARE.
 
 \maketitle
 
-%\input{limits.tex}
-%\input{complex.tex}
-%\input{diffint.tex}
-%\input{diffeq.tex}
+\begin{frame}{Current status}
+    Since these slides are the result of free time work, they are not yet complete.
+
+    The following topics are currently missing from the slides:
+    \begin{itemize}
+        \pause\item More on variation of parameters (also for first order DEs)
+        \pause\item Implicit differentiation
+        \pause\item Improper integrals
+        \pause\item Logarithmic differentiation (although something similar is discussed)
+        \pause\item Trigonometric integrals
+        \pause\item Rolle's theorem, Mean Value Theorem, Intermediate Value Theorem, Fundamental Theorem of Calculus, ...
+        \pause\item Derivative tests
+        \pause\item Arc length of a curve
+        \pause\item ... possibly more??
+    \end{itemize}
+    Still, we hope the slides are helpful.
+\end{frame}
+
+\input{limits.tex}
+\input{complex.tex}
+\input{diffint.tex}
+\input{diffeq.tex}
 \input{taylor.tex}
 
 \end{document}

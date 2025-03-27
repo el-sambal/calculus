@@ -170,7 +170,7 @@ First construct the corresponding quadratic equation and solve it:
 \begin{flalign*}
 &r^2+16r+64=0\\
 &(r+8)^2=0\\
-&r=-8\\
+&r=-8
 \end{flalign*}
 
 \pause
@@ -384,6 +384,59 @@ for any constants $c_1$ and $c_2$.
 \end{frame}
 
 
+
+\begin{frame}
+	\frametitle{Method of variation of constants}{\scriptsize
+        We already discussed the method of undetermined coefficients to solve nonhomogeneous linear ODEs. Now we discuss another method: \textbf{variation of constants} (or \textbf{variation of parameters}).
+
+		\pause Suppose we have the general solution $y(x)=c_1y_1(x)+c_2y_2(x)$
+		to some \textit{homogeneous} DE $ay''+by'+cy=0$.
+		\begin{itemize}
+			\pause	\item Then we can replace the constants $c_1$, $c_2$ by functions $u_1(x)$ and $u_2(x)$, and try to find a \textit{particular} solution to the \textit{nonhomogeneous} equation $ay''+by'+cy=f(x)$ of the form
+			      \[y_p(x)=u_1(x)y_1(x)+u_2(x)y_2(x)\]
+			      %\pause\item To make calculations easier, we impose the constraint that \[u_1'y_1 + u_2'y_2=0\]
+
+			      \pause\item Then we solve this system of equations for $u_1'$ and $u_2'$:
+			      $$\begin{cases}a(u_1'y_1'+u_2'y_2')=f\qquad&\text{\color{orange!50!red}(this comes from subbing $y_p$ into the DE)}\\u_1'y_1 + u_2'y_2=0&\text{\color{orange!50!red}(this is an additional constraint we impose!)}\end{cases}$$
+			      \pause\item Then we integrate $u_1'$ and $u_2'$ to find $u_1$ and $u_2$, and then we found the general solution to the nonhomogeneous equation.
+			      \pause\item Note: this method can be extended to many more types of equations, e.g. equations with nonconstant coefficients. This is helpful if you have to find the general solution given some particular solutions.
+		\end{itemize}}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Variation of constants: condensed example}{\small
+	\textbf{Question}: solve $y''+3y'+2y=\sin(e^x)$.
+
+	\pause\textbf{Solution}: a general solution to the equation $y''+3y'+2y=0$ is given by $y(x)={\color{lime!50!black}c_1e^{-x}+c_2e^{-2x}}$. Now we have to solve the system of equations\pause
+	\[\begin{cases}-u_1'e^{-x} -2u_2'e^{-2x}=\sin(e^x) \qquad\text{\color{orange!50!red}(note that $a=1$)}\\u_1'e^{-x}+u_2'e^{-2x}=0\end{cases}\]
+	\pause Adding the two rows together, we find $-u_2'e^{-2x}=\sin(e^x)$, so $u_2'=-e^{2x}\sin(e^x)$. \pause{}Then, we can also find $u_1'=e^x\sin(e^x)$.
+
+	\pause Both integrals can be solved by substituting $t=e^x$ (then $dt=e^xdx$):
+	\pause\begin{flalign*}
+		u_1(x) & =-\cos(e^x)                                                             \\
+		u_2(x) & =e^x\cos(e^x)-\sin(e^x)\qquad\text{(omitting constants of integration)}
+	\end{flalign*}
+	\pause So a particular solution to the nonhomogeneous equation is $y_p(x)=-\cos(e^x)e^{-x}+(e^x\cos(e^x)-\sin(e^x))e^{-2x}={\color{red}-e^{-2x}\sin(e^x)}$. \pause{}So the general solution is
+	\[\boxed{y(x)={\color{lime!50!black}c_1e^{-x}+c_2e^{-2x}}\, {\color{red} -e^{-2x}\sin(e^x)}}\]
+	}\end{frame}
+
+\begin{frame}
+	\frametitle{Extra: constructing an ODE from its solutions}{\small
+		\begin{itemize}
+			\item\textbf{Question}: give a linear homogeneous ODE with constant coefficients of minimal order, which admits the solutions $y_1=42\cos x$, $y_2=-x\cos x$ and $y_3=e^{42x}$.
+
+			\pause\item\textbf{Solution}: think backwards. If $y_1$, $y_2$ and $y_3$ are solutions, they must correspond to roots in the characteristic equation of the ODE.
+			\pause\item The solution $42\cos x$ corresponds to the roots $r=\pm i$. \pause{}As $-x\cos x$ must also be a solution, these roots must both occur with multiplicity two.
+
+			      \pause\item The solution $e^{42x}$ corresponds to the root $r=42$.
+
+			      \pause\item So the characteristic equation must be $$(r^2+1)^2(r-42)=0$$
+			      \item\pause Expanding brackets and replacing powers of $r$ by derivatives of $y$, we find the answer
+                      \[\boxed{y'''''-42y''''+2y'''-84y''+y'-42y=0}\]
+		\end{itemize}
+
+	}
+\end{frame}
 
 
 

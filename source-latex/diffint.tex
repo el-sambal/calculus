@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2023 Aron Hardeman
+Copyright (c) 2023-2025 Aron Hardeman
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -102,7 +102,7 @@ So, say we have two functions $f=f(x)$ and $g=g(x)$, and that $y(x)=f(x)^{g(x)}$
 
 \end{frame}
 
-\subsection{Integration}
+\subsection{Integration \& Applications}
 \tableofcontents[currentsection,currentsubsection]
 \begin{frame}
 \frametitle{Integration: simple integrals}
@@ -158,7 +158,7 @@ Definite integrals: $\int_a^b \textcolor{red}{u(x)}\textcolor{blue}{v'(x)}dx=[\t
 \end{itemize}
 }\end{frame}
 
-\begin{frame}[label=current]
+\begin{frame}
 \frametitle{Integration by parts (2)}{\small
 \vspace{-3mm}\begin{tcolorbox}[colback=yellow!50,colframe=violet!75!black,title=General form -- Integration By Parts]
 {\small Indefinite integrals: $\int \textcolor{red}{u(x)}\textcolor{blue}{v'(x)}dx=[\textcolor{red}{u(x)}\textcolor{blue}{v(x)}]-\int \textcolor{red}{u'(x)}\textcolor{blue}{v(x)}dx$
@@ -247,19 +247,18 @@ Definite integrals: $\int_a^b \textcolor{red}{u(x)}\textcolor{blue}{v'(x)}dx=[\t
         \end{itemize}
 
         \begin{tcolorbox}[colback=yellow!50,colframe=violet!85!black,title=Trigonometric substitutions for integration]
+            \centering
         \begin{tabular}{ |c|c|c| } 
          \hline
          Expression & Use the substitution & And use \\
          \hline\hline&&\\[-2.2ex]
-         $\sqrt{a^2-x^2}$ & $x=a\sin\theta$ & $1-\sin^2\theta=\cos^2\theta$ \\ 
-         $\sqrt{a^2+x^2}$ & $x=a\tan\theta$ & $1+\tan^2\theta=\sec^2\theta$ \\ 
-         $\sqrt{x^2-a^2}$ & $x=a\sec\theta$ & $\sec^2\theta-1=\tan^2\theta$\\ 
+         $\sqrt{a^2-x^2}$ & $x=a\sin\theta$, $-\frac\pi2\leq\theta\leq\frac\pi2$ & $1-\sin^2\theta=\cos^2\theta$ \\ 
+         $\sqrt{a^2+x^2}$ & $x=a\tan\theta$, $-\frac\pi2<\theta<\frac\pi2$ &  $1+\tan^2\theta=\sec^2\theta$ \\ 
+         $\sqrt{x^2-a^2}$ & $x=a\sec\theta$, {\footnotesize$0\leq\theta<\frac\pi2$ or $\pi\leq\theta\frac{3\pi}2$} &  $\sec^2\theta-1=\tan^2\theta$\\ 
          \hline
          
         \end{tabular}
         
-        \vspace{3mm}
-        {\small A fully rigorous answer should mention the range that $\theta$ can be in. However, we omit this for simplicity.}
         \end{tcolorbox}
     
 \end{frame}
@@ -275,7 +274,133 @@ Definite integrals: $\int_a^b \textcolor{red}{u(x)}\textcolor{blue}{v'(x)}dx=[\t
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Sample exam question (slide 1)}
+\begin{frame}{Integration by partial fractions}
+    Sometimes you want to integrate the quotient of two polynomials: \[f(x)=\frac{P(x)}{Q(x)}\].
+
+    \pause
+    Assume for now (\textbf{very important!}) that the degree of $P$ is lower than the degree of $Q$ (otherwise do long division first).
+
+    \pause
+    Then we compute the integral as follows:
+    \begin{enumerate}
+        \item Write $f(x)$ as a \emph{sum} of terms (\emph{partial fractions}) of the form $\frac{A}{(ax+b)^i}$ and $\frac{Ax+B}{(ax^2+bx+c)^j}$ (see next slide).
+        \pause\item Solve for the constants $A$, $B$, $\dots$.
+        \pause\item Integrate each partial fraction.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Finding the partial fraction decomposition}
+    We have $f(x)=\frac{P(x)}{Q(x)}$ \underline{(where $\mathop{\text{deg}}(P)<\mathop{\text{deg}}(Q)$)}. The goal is to write $f(x)$ as a sum of partial fractions.
+
+    \begin{enumerate}
+        \pause\item If $Q(x)=(a_1x+b_1)(a_2x+b_2)\dots(a_kx+b_k)$ is the product of distinct linear factors, then there exist constants $A_1,\dots,A_k$ s.t. $\frac{P(x)}{Q(x)}=\frac{A_1}{a_1x+b_1}+\frac{A_2}{a_2x+b_2}+\dots+\frac{A_k}{a_kx+b_k}$.
+        \pause\item If some linear factor is repeated, it will occur multiple times in the partial fraction decomposition: if we have $Q(x)=\hdots\cdot(a_ix+b_i)^r\cdot\dots$, we get $\frac{P(x)}{Q(x)}=\hdots+\left(\frac{A_1}{a_ix+b_i}+\frac{A_2}{(a_ix+b_i)^2}+\dots+\frac{A_r}{(a_ix+b_i)^r}\right)+\dots$.
+        \pause\item A distinct \textbf{irreducible} quadratic factor $a_ix^2+b_ix+c_i$ of $Q(x)$ adds a term like $\frac{Ax+B}{a_ix^2+b_ix+c_i}$ to the partial fraction decomposition.
+        \pause\item A repeated irreducible quadratic factor $(a_ix^2+b_ix+c)^r$ will give us $\frac{A_1x+B_1}{a_ix^2+b_ix+c}+\frac{A_2x+B_2}{(a_ix^2+b_ix+c)^2}+\dots+\frac{A_rx+B_r}{(a_ix^2+b_ix+c)^r}$ in the decomposition.
+    \end{enumerate}
+    \pause Common mistake: forgetting the $+B$ in cases 3 and 4!
+\end{frame}
+
+\begin{frame}{Finding the partial fraction decomposition: examples}
+    Examples illustrating the last slide:
+    \begin{itemize}
+        \pause \item $f(x)=\frac{3x+6}{(3x+4)(3x+5)}\quad\textcolor{blue}\rightarrow\quad f(x)=\frac{A}{3x+4}+\frac{B}{3x+5}$ 
+        \pause\item $f(x)=\frac{x^2+42x+42}{(x+1)(2x+42)^2}\quad\textcolor{blue}\rightarrow\quad f(x)=\frac{A}{x+1}+\frac{B_1}{2x+42}+\frac{B_2}{(2x+42)^2}$
+    \pause\item {\footnotesize$f(x)=\frac{3x+6}{(3x+4)(x^2+3x+4)^3}$}\quad$\textcolor{blue}\rightarrow$\quad {\footnotesize$f(x)=\frac{A}{3x+4}+\frac{B_1}{x^2+3x+4}+\frac{B_2}{(x^2+3x+4)^2}+\frac{B_3}{(x^2+3x+4)^3}$ }
+    \end{itemize}
+
+    But:
+    \begin{itemize}
+        \pause\item $f(x)=\frac{1}{(2x+4)(x+3)(x+2)}\quad\textcolor{blue}\rightarrow\quad f(x)=\frac{A}{2x+4}+\frac{B}{x+3}+\frac{C}{x+2}$\textcolor{red}{???}\\[0.3em]
+            \pause\textcolor{red}{\textbf{NO}}: $2x+4$ is a constant multiple of $x+2$ so the correct decomposition is
+            \pause $f(x)=\frac{A_1}{x+2}+\frac{A_2}{(x+2)^2}+\frac{B}{x+3}$.
+        \pause\item $f(x)=\frac{3x+6}{(3x+4)(x^2+5x+4)^2}\quad\textcolor{blue}\rightarrow\quad f(x)=\frac{A}{3x+4}+\frac{B_1}{x^2+5x+4}+\frac{B_2}{(x^2+5x+4)^2}$\textcolor{red}{???}\\[0.3em]
+            \pause\textcolor{red}{\textbf{NO}}: $x^2+5x+4=(x+4)(x+1)$ is not an \emph{irreducible} quadratic!
+        \pause\item $f(x)=\frac{x^2+x+1}{(x+1)(x+2)}\quad\textcolor{blue}\rightarrow\quad$\pause\textcolor{red}{\texttt{STOP}}! The degree of the numerator is not less than the degree of the denominator, so we must divide first.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Long division before setting up P.F.D.}
+    If we have some fraction $f(x)=\frac{P(x)}{Q(x)}$ where $\mathop{\text{deg}}(P)\geq\mathop{\text{deg}}(Q)$, then we must divide first.
+
+    \pause For example:
+    %\[f(x)=\frac{(x^2-x-2)(2x+1)-3x-1}{(x+1)(x-2)}\]
+    \begin{flalign*}
+        f(x)&=\frac{2x^3-x^2-8x-3}{(x+1)(x-2)}=\frac{2x(x^2-x-2)+x^2-4x-3}{x^2-x-2}\\
+            &=2x+\frac{(x^2-x-2)-3x-1}{x^2-x-2}=2x+1-\frac{3x+1}{(x+1)(x-2)}
+    \end{flalign*}
+    \pause (The $2x+1$ is easy to integrate, and we can do partial fractions to integrate $\frac{3x+1}{(x+1)(x-2)}$.)
+\end{frame}
+
+\begin{frame}{Tips for partial fractions}
+    After having set up the partial fraction decomposition \textbf{and solved for its constants} (example on next slide), we should integrate each partial fraction individually.
+
+    The following guidelines are useful:
+    \begin{itemize}
+        \pause\item $\int \frac{A}{ax+b}\,dx=\frac A a \ln|ax+b|+C$ (the most common one)
+        \pause\item $\int \frac{dx}{x^2+a^2}=\frac1a\arctan(\frac xa)+C$
+        \pause\item integrate $\frac{Ax+B}{ax^2+bx+c}$ (where $b^2-4ac<0$) by completing the square in the denominator and substituting to get $\int \frac{Cu+D}{u^2+a^2}\,du=\int C\frac{u}{u^2+a^2}\,du+D\int \frac{1}{u^2+a^2}\,du$.
+        \pause\item integrate $\int \frac{1}{(x^2+a^2)^2}\,dx$ by substituting $x=a\tan\theta$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Example on partial fractions}
+    Sorry, not enough time to write it out.
+
+    \pause So let's do one of the following on the board:
+    \begin{itemize}
+        \item $\int \frac{1}{(x+2)(x-3)}\,dx$ (easy)
+        \item $\int\frac{1}{x-\sqrt[5]x}\,dx$ (medium)
+        \item $\int\frac{x^3+2x^2+3x-2}{(x^2+2x+2)^2}\,dx$ (will take the rest of the lecture)
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Volumes of solids of revolution (`normal' way)}
+    \textbf{Question}: compute the volume of the solid obtained by rotating the region bounded by the curves $y=1+\sec x$ and $y=3$ about the line $y=1$.
+
+    \vspace{2mm}
+    \pause
+    \begin{minipage}{0.68\textwidth}
+    \textbf{Solution}: the curves intersect when $1+\sec x=3$, i.e. when $\cos x=\frac12$. We just take the solutions $x=-\frac\pi3$ and $x=\frac\pi3$.
+
+    Then we can compute the volume $V$ as follows:
+\end{minipage}\hspace{0.01\textwidth}
+    \begin{minipage}{0.28\textwidth}
+    \begin{tikzpicture}[scale=0.4]
+        \begin{axis}[ymin=0,ymax=5,xmin=-3.5,xmax=3.5,legend entries={$y=1+\sec x$, $y=3$},legend pos=south east]
+\addplot [red,
+domain=-pi/2:pi/2,
+] {1+1/cos(deg(x))};
+\addplot [blue,
+domain=-4:4,
+] {3};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+
+\footnotesize
+\pause
+\begin{flalign*}
+    V&=\int_{-\pi/3}^{\pi/3}\left(\pi(\textcolor{blue}3-1)^2 - \pi(\textcolor{red}{1+\sec x}-1)^2\right)\,dx=\pi\int_{-\pi/3}^{\pi/3}(4-\sec^2 x)\,dx\\
+     &=\pi\left[4x-\tan x\right]_{-\pi/3}^{\pi/3}=\pi(4\pi/3-\sqrt3)-\pi(-4\pi/3+\sqrt3)=\boxed{\frac{8\pi^2}{3}-2\pi\sqrt3.}
+\end{flalign*}
+\pause (Note: we could have used symmetry to make the integral easier.)
+\end{frame}
+
+\begin{frame}{Volumes of solids of revolution (cylindrical shells)}
+    Sometimes it is (much) easier to compute volumes of solids of revolution as follows.
+
+    \vspace{2mm}
+    \pause
+    \textbf{Question}: find the volume of the solid of revolution obtained by rotating the region bounded by the curves $y=\sqrt{5+x^2}$, $y=0$, $x=0$ and $x=2$ around the $y$-axis.
+
+    \vspace{2mm}
+    \pause
+    \textbf{Solution}: on the board (answer is $\frac23\pi(27-5^{3/2})$).
+\end{frame}
+
+\begin{frame}{Sample question (slide 1)}
     Let $f(x)=2xe^{2x}$.
     \begin{itemize}
         \item (a) Find the $x$- and $y$-coordinates of the local minima and maxima of $f(x)$.
@@ -285,7 +410,7 @@ Definite integrals: $\int_a^b \textcolor{red}{u(x)}\textcolor{blue}{v'(x)}dx=[\t
     
 \end{frame}
 
-\begin{frame}{Sample exam question (slide 2)}
+\begin{frame}{Sample question (slide 2)}
 
 {\small Let $f(x)=2xe^{2x}$.
     \begin{itemize}
@@ -302,7 +427,7 @@ Definite integrals: $\int_a^b \textcolor{red}{u(x)}\textcolor{blue}{v'(x)}dx=[\t
 }
 \end{frame}
 
-\begin{frame}{Sample exam question (slide 3)}
+\begin{frame}{Sample question (slide 3)}
     Let $f(x)=2xe^{2x}$.
     \begin{itemize}
         \item (question b) Find the range of $f(x)$ for $-1\leq x\leq2$.
@@ -311,7 +436,7 @@ Definite integrals: $\int_a^b \textcolor{red}{u(x)}\textcolor{blue}{v'(x)}dx=[\t
     
 \end{frame}
 
-\begin{frame}{Sample exam question (slide 4)}
+\begin{frame}{Sample question (slide 4)}
     Let $f(x)=2xe^{2x}$.
     \begin{itemize}
         \item (question c) Find the area between the $x$-axis and the graph of $f(x)$ for $-1\leq x\leq 2$.
